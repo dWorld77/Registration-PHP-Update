@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+    <div class="NavHeading">
+        LOGO
+     </div>
+     <div class="SubHeading">
+         <div class="s1">
+             Registration form for
+             <br>
+             <span name="college"><span>
+         </div>
+     </div>
+     <div class="mainContainer">
+         <div class="container">
+             <form action="" method="post">
+                 <div id="mainFormClass">
+                     <div class="groupAlldiv">
+                        <div class="RemoveButton">
+                            X
+                        </div>
+                        <div class="form-group">
+                             <label style="font-weight: bold;">Student name:</label>
+                             <input type="text" name="data[]" placeholder="J James" required>
+                        </div>
+                        <div class="form-group">
+                             <label style="font-weight: bold;">Event:</label>
+                             <select name="data[]" required>
+                                <option value="">Select an event</option>
+                                <option value="Paper presentation">Paper presentation</option>
+                                <option value="Software debugging">Software debugging</option>
+                                <option value="Quiz - prelims & final">Quiz - prelims & final</option>
+                                <option value="Digital poster making">Digital poster making</option>
+                                <option value="Treasure hunt">Treasure hunt</option>
+                                <option value="Facial painting">Facial painting</option>
+                                <option value="Flameless cooking">Flameless cooking</option>
+                             </select>
+                         </div>
+                     </div>
+                 </div>
+                 <div id="AddButton" class="AddButton">
+                     Add
+                 </div>
+                
+                 <div class="form-group">
+                     <button type="submit" name="register">Register</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+    <script>
+        const addFormBtn = document.getElementById('AddButton');
+        const formsContainer = document.getElementById('mainFormClass');
+        addFormBtn.addEventListener('click', function() 
+        {
+            const firstForm = document.querySelector('.groupAlldiv');
+            const clonedForm = firstForm.cloneNode(true);
+            formsContainer.appendChild(clonedForm);
+
+            const inputs = clonedForm.querySelectorAll('input');
+            inputs.forEach(function(input) 
+            {
+                input.value = '';
+            });
+
+            const allForm = document.querySelectorAll('.groupAlldiv');
+            const lastForm = allForm[allForm.length - 1];
+            const removeFormBtns = document.querySelectorAll('.RemoveButton');
+            removeFormBtns.forEach(function(btn) 
+            {
+                btn.style.display = 'inline-block';
+                btn.addEventListener('click', function() 
+                {
+                    if (document.querySelectorAll('.groupAlldiv').length > 1) 
+                    {
+                        const formGroup = btn.closest('.groupAlldiv');
+                        formGroup.remove();
+                        if (document.querySelectorAll('.groupAlldiv').length === 1) 
+                        {
+                            const lastFormRemoveBtn = document.querySelector('.groupAlldiv .RemoveButton');
+                            lastFormRemoveBtn.style.display = 'none';
+                        }
+                    }
+                });
+            });
+
+            if (allForm.length > 1) 
+            {
+                const firstFormRemoveBtn = document.querySelector('.groupAlldiv .RemoveButton');
+                firstFormRemoveBtn.style.display = 'block';
+            }
+        });
+        const removeFormBtns = document.querySelectorAll('.RemoveButton');
+        removeFormBtns[removeFormBtns.length - 1].style.display = 'none';
+      </script>
+</body>
+</html>
